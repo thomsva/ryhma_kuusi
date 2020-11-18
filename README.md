@@ -1,2 +1,2 @@
 # ryhma_kuusi
-[linkki-backlog](!www)
+[linkki-backlog](https://docs.google.com/spreadsheets/d/1RO2MffWArJQC46bIBxDrssFFNXkhuvTwhy_IlThdQgs/edit?ts=5fb5358b#gid=1820141540)
