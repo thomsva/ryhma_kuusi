@@ -26,3 +26,5 @@ jobs:
       run: ./gradlew build
     - name: Run checkstyle
       run: gradle checkstyleMain
+    - name: Test with Gradle
+      run: ./gradlew test
