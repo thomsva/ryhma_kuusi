@@ -28,3 +28,5 @@ jobs:
       run: gradle checkstyleMain
     - name: Test with Gradle
       run: ./gradlew test
+    - name: Code coverage report
+      run: ./gradlew jacocoTestReport
