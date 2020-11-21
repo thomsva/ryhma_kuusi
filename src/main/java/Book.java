@@ -11,33 +11,46 @@ public class Book extends Bookmark {
      * @param newBookTitle
      */
     public Book(final String newBookTitle) {
-        this.title = newBookTitle;
+        super(newBookTitle);
     }
     
     /**
      * Create book with specific title, author and number of pages.
      * @param newBookTitle
-     * @param author
-     * @param numberOfPages
+     * @param newAuthor
+     * @param newNumberOfPages
      */
-    public Book(String newBookTitle, String author, int numberOfPages) {
-        this.title = newBookTitle;
-        this.author = author;
-        this.numberOfPages = numberOfPages;
+    public Book(final String newBookTitle, 
+            String newAuthor, int newNumberOfPages) {
+        super(newBookTitle);
+        this.author = newAuthor;
+        this.numberOfPages = newNumberOfPages;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    /**
+     * @param newAuthor the author to set
+     */
+    public void setAuthor(String newAuthor) {
+        this.author = newAuthor;
     }
 
-    public void setNumberOfPages(int numberOfPages) {
-        this.numberOfPages = numberOfPages;
+    /**
+     * @param newNumberOfPages the number of pages to set
+     */
+    public void setNumberOfPages(int newNumberOfPages) {
+        this.numberOfPages = newNumberOfPages;
     }
 
+    /**
+     * @return the author
+     */
     public String getAuthor() {
         return author;
     }
 
+    /**
+     * @return the number of pages
+     */
     public int getNumberOfPages() {
         return numberOfPages;
     }

@@ -2,9 +2,10 @@
 
 public class Bookmark {
     
-    protected String title;
+    private String title;
 
-    public Bookmark() {
+    public Bookmark(String newBookTitle) {
+        this.title = newBookTitle;
     }
 
     /**
