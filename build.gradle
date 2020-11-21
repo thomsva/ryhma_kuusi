@@ -1,0 +1,42 @@
+plugins {
+    id 'application'
+    id 'checkstyle'
+    id 'jacoco'
+}
+
+application {
+    mainClass.set('Main')
+}
+
+checkstyleMain.exclude ('Main.java')
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation group: 'junit', name: 'junit', version: '4.13'
+}
+
+jar { 
+    manifest {
+        attributes 'Main-Class': 'Main'
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+    /*afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: ['Main'])
+        }))
+    }*/
+}
+
+run {
+    standardInput = System.in
+}
