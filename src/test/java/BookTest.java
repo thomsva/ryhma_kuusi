@@ -13,9 +13,9 @@ public class BookTest {
     
     @Test
     public void createNewBookwithTitleAuthorAndNumberOfPages() {
-        book = new Book("title", "author", 101);
+        book = new Book("title", "author", 1);
         assertEquals("title", book.getTitle());
         assertEquals("author", book.getAuthor());
-        assertEquals(101, book.getNumberOfPages());
+        assertEquals(1, book.getNumberOfPages());
     }
 }
