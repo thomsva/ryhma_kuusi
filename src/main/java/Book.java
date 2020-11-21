@@ -1,11 +1,11 @@
 /**
  * Representing books.
  */
-public class Book {
-    /**
-     * Create variable title.
-     */
-    private String title;
+public class Book extends Bookmark {
+    
+    private String author; 
+    private int numberOfPages;
+    
     /**
      * Create book with specific title.
      * @param newBookTitle
@@ -13,18 +13,33 @@ public class Book {
     public Book(final String newBookTitle) {
         this.title = newBookTitle;
     }
-
+    
     /**
-     * @return the title
+     * Create book with specific title, author and number of pages.
+     * @param newBookTitle
+     * @param author
+     * @param numberOfPages
      */
-    public String getTitle() {
-        return title;
+    public Book(String newBookTitle, String author, int numberOfPages) {
+        this.title = newBookTitle;
+        this.author = author;
+        this.numberOfPages = numberOfPages;
     }
 
-    /**
-     * @param newTitle the title to set
-     */
-    public void setTitle(final String newTitle) {
-        this.title = newTitle;
+    public void setAuthor(String author) {
+        this.author = author;
     }
+
+    public void setNumberOfPages(int numberOfPages) {
+        this.numberOfPages = numberOfPages;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public int getNumberOfPages() {
+        return numberOfPages;
+    }
+
 }
