@@ -23,10 +23,16 @@ public class BookTest {
     }
     
     @Test
-    public void setAuthorLaterTest(){
+    public void setAuthorLaterTest() {
         book = new Book("Crime and Punishment");
         book.setAuthor("Dostoyevsky");
         assertEquals("Dostoyevsky", book.getAuthor());
+    }   
+    
+    @Test
+    public void setNonSetAuthorIsNull() {
+        book = new Book("Lost in the Andes");
+        assertNull(book.getAuthor());
     }
     
 }
