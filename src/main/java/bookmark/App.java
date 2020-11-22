@@ -55,9 +55,9 @@ public class App {
                 
                 List<Book> booklist = bookDao.listAll();
                 booklist.forEach((book) -> {
-                    System.out.println("Title: " + book.getTitle() +
-                            " | Author: " + book.getAuthor() +
-                            " | Number of pages: " + book.getNumberOfPages());
+                    System.out.println("Title: " + book.getTitle()
+                            + " | Author: " + book.getAuthor()
+                            + " | Number of pages: " + book.getNumberOfPages());
                 });
                
             } else {

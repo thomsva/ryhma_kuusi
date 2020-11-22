@@ -4,6 +4,10 @@ import bookmark.domain.Book;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author hcjami
+ */
 public class InMemoryBookDao implements BookDao {
     
     private List<Book> books = new ArrayList<>();
@@ -13,15 +17,18 @@ public class InMemoryBookDao implements BookDao {
     } 
     
     /**
-     * @return the list containing all bookmarks
+     * @return the list containing all books
      */
     @Override
     public List<Book> listAll() {
         return books;
     }
     
+    /**
+     * @param book - Book object to be added
+     */
     @Override
-    public void add(Book book){
+    public void add(Book book) {
         books.add(book);
     }
 }
