@@ -5,10 +5,10 @@ plugins {
 }
 
 application {
-    mainClass.set('bookmark.Main')
+    mainClass.set('Main')
 }
 
-checkstyleMain.exclude ('bookmark.Main.java')
+checkstyleMain.exclude ('Main.java')
 
 repositories {
     jcenter()
@@ -21,7 +21,7 @@ dependencies {
 
 jar { 
     manifest {
-        attributes 'Main-Class': 'bookmark.Main'
+        attributes 'Main-Class': 'Main'
     }
 }
 
