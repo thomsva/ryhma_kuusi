@@ -1,3 +1,5 @@
+package bookmark.domain;
+
 import bookmark.domain.Book;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;

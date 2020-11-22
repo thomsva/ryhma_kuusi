@@ -1,3 +1,5 @@
+package bookmark;
+
 import io.ConsoleIO;
 import io.IO;
 
@@ -11,9 +13,6 @@ public class Main {
        
         IO io = new ConsoleIO();
         new App(io).run();
-       
-        
-         
    
     }
     
