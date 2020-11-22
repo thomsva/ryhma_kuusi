@@ -1,3 +1,5 @@
+package bookmark.domain;
+
 
 
 public class Bookmark {

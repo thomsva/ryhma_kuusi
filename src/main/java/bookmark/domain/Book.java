@@ -1,3 +1,5 @@
+package bookmark.domain;
+
 /**
  * Representing books.
  */
@@ -10,6 +12,7 @@ public class Book extends Bookmark {
      * Create book with specific title.
      * @param newBookTitle
      */
+    
     public Book(final String newBookTitle) {
         super(newBookTitle);
     }
