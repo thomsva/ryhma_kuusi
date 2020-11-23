@@ -36,11 +36,31 @@ public class Stepdefs {
         inputLines.add("add book");
     }
     
-    @When("valid title {string} and author {string} and pages {int} are entered")
-    public void validTitleAuthorAndPagesAreEntered(String title, String author, int pages) {
+    @When("valid title {string} and author {string} and pages {string} are entered")
+    public void validTitleAuthorAndPagesAreEntered(String title, String author, String pages) {
         inputLines.add(title);
         inputLines.add(author);
-        inputLines.add(String.valueOf(pages));
+        inputLines.add(pages);
+        io = new StubIO(inputLines); 
+        app = new App(io, service);
+        app.run();
+    }
+    
+    @When("valid title {string} and author {string} and invalid pages {string} are entered")
+    public void validTitleAuthorAndInvalidPagesAreEntered(String title, String author, String pages) {
+        inputLines.add(title);
+        inputLines.add(author);
+        inputLines.add(pages);
+        io = new StubIO(inputLines); 
+        app = new App(io, service);
+        app.run();
+    }
+    
+    @When("invalid title {string} and  valid author {string} and valid pages {string} are entered")
+    public void invalidTitleValidAuthorAndValidPagesAreEntered(String title, String author, String pages) {
+        inputLines.add(title);
+        inputLines.add(author);
+        inputLines.add(pages);
         io = new StubIO(inputLines); 
         app = new App(io, service);
         app.run();

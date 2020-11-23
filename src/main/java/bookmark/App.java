@@ -2,7 +2,6 @@ package bookmark;
 
 import bookmark.io.IO;
 import bookmark.bookmark_access.InMemoryBookDao;
-import bookmark.domain.Book;
 import bookmark.bookmark_access.BookDao;
 import bookmark.services.BookmarkService;
 import bookmark.io.ConsoleIO;
@@ -18,16 +17,7 @@ public class App {
         this.io = io;
         this.service = service;
     }
-    /**
-     * ask book's information from user
-     */
-    public Book askBookInfo() {
-        String title = io.readLine("Book's title: ");
-        String author = io.readLine("Author: ");
-        int pages = io.readInt("number of pages: ");
-        Book book = new Book(title, author, pages);
-        return book;
-    }
+
     /**
      * run app
      */
@@ -43,10 +33,13 @@ public class App {
             }
            
             if (command.equals("add book")) {
+                
+                String title = io.readLine("Book's title: ");
+                String author = io.readLine("Author: ");
+                String pages = io.readLine("number of pages: ");
                
-                Book newBook = askBookInfo();
                
-                if (service.addBook(newBook)) {
+                if (service.addBook(title, author, pages)) {
                     io.print("Book added successfully");
                     
                 } else {

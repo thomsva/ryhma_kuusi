@@ -23,12 +23,27 @@ public class BookmarkService {
     }
      /**
      * calls BookDao's method add to add book
+     * @param inputTitle title user entered
+     * @param inputAuthor author user entered 
+     * @param inputPages pages user entered
+     * @return return true if inputs were valid and book was added, otherwise false
      */
-    public boolean addBook(Book book) {
+    public boolean addBook(String inputTitle, String inputAuthor, String inputPages) {
         
-        bookDao.add(book);
+        String regex = "^[0-9]+";
+        
+        if (!inputPages.matches(regex)) {
+            return false;
+        } else if (inputTitle.isEmpty() || inputAuthor.isEmpty() || inputPages.isEmpty()) {
+            return false;
+        } else {
+            int pages = Integer.parseInt(inputPages);
+            Book book = new Book(inputTitle, inputAuthor, pages);
+            bookDao.add(book);
         
         return true;
+        }
+
     }
      /**
      * calls BookDao's method listAll to list books
@@ -45,4 +60,3 @@ public class BookmarkService {
     
     
 }
-
