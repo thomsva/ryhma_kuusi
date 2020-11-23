@@ -1,30 +1,41 @@
 package bookmark;
 
-import io.IO;
-import java.util.Scanner;
+import bookmark.io.IO;
 import bookmark.bookmark_access.InMemoryBookDao;
 import bookmark.domain.Book;
 import bookmark.bookmark_access.BookDao;
-import java.util.List;
+import bookmark.services.BookmarkService;
+import bookmark.io.ConsoleIO;
 
 public class App {
     
     private final IO io;
     private BookDao bookDao = new InMemoryBookDao();
-    //scanner tarkoitus saada pois tästä luokasta ja luku tapahtumaan io kautta
-    private Scanner scanner = new Scanner(System.in);
+    private BookmarkService service;
     
-    public App(IO io) {
+    
+    public App(IO io, BookmarkService service) {
         this.io = io;
+        this.service = service;
     }
-    
+    /**
+     * ask book's information from user
+     */
+    public Book askBookInfo() {
+        String title = io.readLine("Book's title: ");
+        String author = io.readLine("Author: ");
+        int pages = io.readInt("number of pages: ");
+        Book book = new Book(title, author, pages);
+        return book;
+    }
     /**
      * run app
      */
     public void run() {
          
         while (true) {
-       
+            
+            System.out.println("");
             String command = io.readLine("command ('add book' or 'list') or leave empty to quit:");
            
             if (command.isEmpty()) {
@@ -33,36 +44,32 @@ public class App {
            
             if (command.equals("add book")) {
                
-                System.out.println("Book's title: ");
-                String bookTitle = scanner.nextLine(); 
+                Book newBook = askBookInfo();
                
-                System.out.println("Author: ");
-                String author = scanner.nextLine();
-               
-                System.out.println("number of pages: ");
-                int pages = Integer.parseInt(scanner.nextLine());
-               
-                try { 
-                    Book book = new Book(bookTitle, author, pages);
-                    bookDao.add(book);
-                    io.print("Added book: " + bookTitle + ", " + author + ", " + pages + " pages.");
-                } catch (Exception e) {
-                    System.out.println("Error in adding the bookmark.");
-                    System.out.println(e);
-                }
+                if (service.addBook(newBook)) {
+                    io.print("Book added successfully");
+                    
+                } else {
+                    io.print("Error in adding the bookmark");                     
+                } 
                 
             } else if (command.equals("list")) {
                 
-                List<Book> booklist = bookDao.listAll();
-                booklist.forEach((book) -> {
-                    System.out.println("Title: " + book.getTitle()
-                            + " | Author: " + book.getAuthor()
-                            + " | Number of pages: " + book.getNumberOfPages());
-                });
-               
+                service.listBooks();
+                    
             } else {
                System.out.println("unknown command");
             }
         }
     }
+    public static void main(String[] args) {
+        
+        IO io = new ConsoleIO();
+        BookDao dao = new InMemoryBookDao();
+        BookmarkService service = new BookmarkService(dao);  
+        System.out.println("Welcome to BookMarkApp!");
+        new App(io, service).run();
+   
+    }
 }
+

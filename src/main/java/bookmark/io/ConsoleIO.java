@@ -1,4 +1,4 @@
-package io;
+package bookmark.io;
 
 import java.util.Scanner;
 
