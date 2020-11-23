@@ -10,6 +10,8 @@ application {
 
 checkstyleMain.exclude ('bookmark.Main.java')
 
+checkstyleTest.exclude('bookmark.cucumber.*.java')
+
 repositories {
     jcenter()
     mavenCentral()

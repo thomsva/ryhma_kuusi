@@ -15,21 +15,33 @@ public class StubIO implements IO {
         prints = new ArrayList<>();
     }
     
+    /**
+     * adds string to a list for printing
+     */
     @Override
     public void print(String toPrint) {
         prints.add(toPrint);
     }
     
+    /**
+     * reads integer value from the added lines
+     */
     @Override
     public int readInt(String prompt) {
         print(prompt);
         return Integer.parseInt(lines.get(i++));
     }
 
+    /**
+     * returns a list of string sent for printing
+     */
     public ArrayList<String> getPrints() {
         return prints;
     }
     
+    /**
+     * reads the lines added for printing
+     */
     @Override
     public String readLine(String prompt) {
         print(prompt);
