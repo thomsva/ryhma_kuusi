@@ -2,12 +2,9 @@
 package bookmark.io;
 
 import java.io.ByteArrayOutputStream;
-import java.io.ByteArrayInputStream;
 import java.io.PrintStream;
-import java.io.InputStream;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import org.junit.Before;
 
 public class IoTest {
