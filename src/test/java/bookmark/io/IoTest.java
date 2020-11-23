@@ -19,8 +19,7 @@ public class IoTest {
     public void testPrint() {
         ConsoleIO consoleIO = new ConsoleIO();
         consoleIO.print("hello");
-        assertEquals("hello\n", outContent.toString());
-            
+        assertEquals("hello", outContent.toString().trim());          
     }
     
     

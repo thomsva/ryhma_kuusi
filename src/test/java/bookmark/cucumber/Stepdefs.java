@@ -18,11 +18,11 @@ import static org.junit.Assert.assertTrue;
 
 public class Stepdefs {
     
-    BookDao bookDao;
-    App app;
-    List<String> inputLines;
-    BookmarkService service;
-    StubIO io;
+    private BookDao bookDao;
+    private App app;
+    private List<String> inputLines;
+    private BookmarkService service;
+    private StubIO io;
     
     @Before
     public void setUp() {
