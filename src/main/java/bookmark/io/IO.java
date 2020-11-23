@@ -1,4 +1,4 @@
-package io;
+package bookmark.io;
 
 public interface IO {
     void print(String toPrint);

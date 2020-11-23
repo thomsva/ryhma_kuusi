@@ -5,7 +5,7 @@ plugins {
 }
 
 application {
-    mainClass.set('bookmark.Main')
+    mainClass.set('bookmark.App')
 }
 
 checkstyleMain.exclude ('bookmark.Main.java')
@@ -27,7 +27,7 @@ dependencies {
 
 jar { 
     manifest {
-        attributes 'Main-Class': 'bookmark.Main'
+        attributes 'Main-Class': 'bookmark.App'
     }
 }
 
