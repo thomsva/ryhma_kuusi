@@ -19,6 +19,8 @@
 - Uusi toiminnallisuus on integroitu aiempaan ohjelmaan.
 - Uusi toiminnallisuus on asiakkaan käytettävissä.
 
-## asennus- ja käyttöohje
+## User's manual
+
+[Link to the manual](https://github.com/LindaJT/ryhma_kuusi/blob/main/MANUAL.md)
 
 ## lisenssi
