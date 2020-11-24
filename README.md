@@ -19,7 +19,7 @@
 - Uusi toiminnallisuus on integroitu aiempaan ohjelmaan.
 - Uusi toiminnallisuus on asiakkaan käytettävissä.
 
-## User's manual
+## User manual
 
 [Link to the manual](https://github.com/LindaJT/ryhma_kuusi/blob/main/MANUAL.md)
 
