@@ -1,6 +1,7 @@
 # ryhma_kuusi
 
 ![Github Actions](https://github.com/LindaJT/ryhma_kuusi/workflows/Java%20CI%20with%20Gradle/badge.svg)
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE.txt)
 
 ## linkit
 
@@ -22,5 +23,3 @@
 ## User manual
 
 [Link to the manual](https://github.com/LindaJT/ryhma_kuusi/blob/main/MANUAL.md)
-
-## lisenssi
