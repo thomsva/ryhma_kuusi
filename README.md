@@ -13,12 +13,12 @@
 
 ## definition of done
 
-- Asiakkaan toivoma toiminnallisuus toteutuu.
-- Testikattavuus on vähintään 70 %.
-- Sovelluksen toiminta on varmistettu myös käytännössä pyydetyssä muodossa annetuilla syötteillä.
-- Koodi läpäisee kaikki asetetut checkstyle-testit.
-- Uusi toiminnallisuus on integroitu aiempaan ohjelmaan.
-- Uusi toiminnallisuus on asiakkaan käytettävissä.
+- Code is written.
+- Test written and at least 70 % of them passing.
+- All checkstyle tests passed.
+- Continuous Integration build passing.
+- Acceptance criteria met.
+- Documentation updated.
 
 ## User manual
 
