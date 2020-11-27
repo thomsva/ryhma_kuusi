@@ -30,3 +30,5 @@ jobs:
       run: ./gradlew test
     - name: Code coverage report
       run: ./gradlew jacocoTestReport
+    - name: Data to codecov
+      run: bash <(curl -s https://codecov.io/bash)
