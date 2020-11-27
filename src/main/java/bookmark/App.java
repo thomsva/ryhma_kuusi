@@ -3,14 +3,14 @@ package bookmark;
 import bookmark.io.IO;
 import bookmark.bookmark_access.InMemoryBookDao;
 import bookmark.bookmark_access.BookDao;
+import bookmark.bookmark_access.DBDao;
 import bookmark.services.BookmarkService;
 import bookmark.io.ConsoleIO;
 
 public class App {
     
     private final IO io;
-    private BookDao bookDao = new InMemoryBookDao();
-    private BookmarkService service;
+    private final BookmarkService service;
     
     
     public App(IO io, BookmarkService service) {
@@ -56,13 +56,19 @@ public class App {
         }
     }
     public static void main(String[] args) {
-        
         IO io = new ConsoleIO();
-        BookDao dao = new InMemoryBookDao();
-        BookmarkService service = new BookmarkService(dao);  
+        Boolean dbMemory = true;
+        if (!dbMemory) {
+            BookDao dao = new InMemoryBookDao();
+            BookmarkService service = new BookmarkService(dao);
+            System.out.println("Welcome to BookMarkApp!");
+            new App(io, service).run();
+        } else {
+        BookDao dbDao = new DBDao("bookmark.db");
+        BookmarkService service = new BookmarkService(dbDao);  
         System.out.println("Welcome to BookMarkApp!");
         new App(io, service).run();
-   
+        }
     }
 }
 
