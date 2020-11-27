@@ -22,7 +22,7 @@ public class DBDao implements BookDao {
     private final List<Book> books;
 
     public DBDao(String dbName) {
-        url = "jdbc:sqlite:"+dbName;
+        url = "jdbc:sqlite:" + dbName;
         books = new ArrayList<>();
         createDatabaseAndTablesIfDoNotExists(dbName);
     }
