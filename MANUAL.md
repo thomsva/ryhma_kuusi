@@ -13,3 +13,7 @@ Run the program using your system's command line (for example, in Windows it wou
 In these early stages of development, using the application should be quite self-explanatory. The application will guide you in adding books and listing them. The application doesn't (yet) have an in-built manual, other than the prompts is gives while running.
 
 In short, you can give two types of commands in the application: either type 'add book' or 'list' to add a book or list all books that you've added. When adding a book, the program will prompt you to give your addition a title, an author and the number of pages.
+
+### Building from source
+
+Use command `./gradlew ShadowJar`
