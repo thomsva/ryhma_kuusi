@@ -7,7 +7,10 @@ package bookmark.services;
 
 import bookmark.bookmark_access.BookDao;
 import bookmark.domain.Book;
+import java.util.Collections;
 import java.util.List;
+import bookmark.io.ConsoleIO;
+import bookmark.io.IO;
 
 /**
  *
@@ -15,11 +18,12 @@ import java.util.List;
  */
 public class BookmarkService {
     
-    
+    private final IO io;
     private BookDao bookDao;
     
-    public BookmarkService(BookDao bookDao) {
+    public BookmarkService(BookDao bookDao, IO io) {
         this.bookDao = bookDao;
+        this.io = io;
     }
      /**
      * calls BookDao's method add to add book
@@ -50,9 +54,9 @@ public class BookmarkService {
      */
     public void listBooks() {
        List<Book> bookList = bookDao.listAll();
-       
+       Collections.sort(bookList);
        bookList.forEach((book) -> {
-                    System.out.println("Id: " + book.getId()
+                    io.print("Id: " + book.getId()
                             + " | Title: " + book.getTitle()
                             + " | Author: " + book.getAuthor()
                             + " | Number of pages: " + book.getNumberOfPages()

@@ -3,7 +3,7 @@ package bookmark.domain;
 /**
  * Representing books.
  */
-public class Book extends Bookmark {
+public class Book extends Bookmark implements Comparable<Bookmark> {
     
     private int id;
     private String author; 
@@ -24,6 +24,7 @@ public class Book extends Bookmark {
      * @param newBookTitle
      * @param newAuthor
      * @param newNumberOfPages
+     * @param newCurrentPage
      */
     public Book(final String newBookTitle, 
             String newAuthor, int newNumberOfPages, int newCurrentPage) {

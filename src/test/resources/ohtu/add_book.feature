@@ -8,7 +8,7 @@ Feature: As a user I can add a book
    Scenario: user can not add a book if letters are entered for number of pages
       Given command add book is selected
       When valid title "kirja" and author "kirjailija" and invalid pages "10s" are entered
-       Then system will respond with "Error in adding the bookmark"
+      Then system will respond with "Error in adding the bookmark"
 
    Scenario: user can not add a book if empty string is added for title
       Given command add book is selected
@@ -29,3 +29,7 @@ Feature: As a user I can add a book
       Given command add book is selected
       When invalid title "ohtumaterial" and  valid author " " and valid pages "103" are entered
       Then system will respond with "Error in adding the bookmark"
+
+   Scenario: when user input is invalid then correct output
+      When command "ad bok" is selected
+      Then system will respond with "unknown command"

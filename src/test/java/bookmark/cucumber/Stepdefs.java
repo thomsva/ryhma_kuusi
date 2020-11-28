@@ -28,7 +28,6 @@ public class Stepdefs {
     public void setUp() {
         bookDao = new InMemoryBookDao();   
         inputLines = new ArrayList<>();  
-        service = new BookmarkService(bookDao);
     }
     
     @Given("command add book is selected")
@@ -41,9 +40,7 @@ public class Stepdefs {
         inputLines.add(title);
         inputLines.add(author);
         inputLines.add(pages);
-        io = new StubIO(inputLines); 
-        app = new App(io, service);
-        app.run();
+        runApp();
     }
     
     @When("valid title {string} and author {string} and invalid pages {string} are entered")
@@ -51,9 +48,7 @@ public class Stepdefs {
         inputLines.add(title);
         inputLines.add(author);
         inputLines.add(pages);
-        io = new StubIO(inputLines); 
-        app = new App(io, service);
-        app.run();
+        runApp();
     }
     
     @When("invalid title {string} and  valid author {string} and valid pages {string} are entered")
@@ -61,18 +56,45 @@ public class Stepdefs {
         inputLines.add(title);
         inputLines.add(author);
         inputLines.add(pages);
-        io = new StubIO(inputLines); 
-        app = new App(io, service);
-        app.run();
+        runApp();
     }
     
     @Then("system will respond with {string}")
     public void systemRespondsWithExpectedOutput(String expectedOutput) {
+        System.out.println("ohjelma tulosti seuraavat rivit "+io.getPrints());
         assertTrue(io.getPrints().contains(expectedOutput));
     }
 
+    @Given("create book title {string}, author {string} and pages {string}")
+    public void createBooks(String title, String author, String pages) {
+        inputLines.add(title);
+        inputLines.add(author);
+        inputLines.add(pages);
+    }
+
+    @When("command list is selected")
+    public void commandListIsSelected() {
+        inputLines.add("list");
+        runApp();
+    }
+
+    @Given("invalid command")
+    public void doNotginh() {
+    }
+
+    @When("command {string} is selected")
+    public void customCommandSelected(String command) {
+        inputLines.add(command);
+        runApp();
+    }
+
+
+    
+    private void runApp() {
+        io = new StubIO(inputLines); 
+        service = new BookmarkService(bookDao, io);
+        app = new App(io, service);
+        app.run();
+    }
+
 }
-
-
-        
- 

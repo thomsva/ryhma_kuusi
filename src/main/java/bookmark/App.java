@@ -49,7 +49,7 @@ public class App {
                 service.listBooks();
 
             } else {
-                System.out.println("unknown command");
+                io.print("unknown command");
             }
         }
     }
@@ -59,12 +59,12 @@ public class App {
         Boolean dbMemory = true;
         if (!dbMemory) {
             BookDao dao = new InMemoryBookDao();
-            BookmarkService service = new BookmarkService(dao);
+            BookmarkService service = new BookmarkService(dao, io);
             System.out.println("Welcome to BookMarkApp!");
             new App(io, service).run();
         } else {
             BookDao dbDao = new DBDao("bookmark.db");
-            BookmarkService service = new BookmarkService(dbDao);
+            BookmarkService service = new BookmarkService(dbDao, io);
             System.out.println("Welcome to BookMarkApp!");
             new App(io, service).run();
         }
