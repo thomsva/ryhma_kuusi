@@ -15,11 +15,12 @@ public class BookTest {
     }
     
     @Test
-    public void createNewBookwithTitleAuthorAndNumberOfPages() {
-        book = new Book("title", "author", 1);
+    public void createNewBookwithTitleAuthorNumberOfPagesAndCurrentPageZero() {
+        book = new Book("title", "author", 1, 0);
         assertEquals("title", book.getTitle());
         assertEquals("author", book.getAuthor());
         assertEquals(1, book.getNumberOfPages());
+        assertEquals(0, book.getCurrentPage());
     }
     
     @Test
@@ -35,4 +36,17 @@ public class BookTest {
         assertNull(book.getAuthor());
     }
     
+    @Test
+    public void setNumberOfPagesLater() {
+        book = new Book("title", "author", 32, 0);
+        book.setNumberOfPages(100);
+        assertEquals(100, book.getNumberOfPages());
+    }
+    
+    @Test
+    public void setCurrentPageLater() {
+        book = new Book("title", "author", 100, 0);
+        book.setCurrentPage(32);
+        assertEquals(32, book.getCurrentPage());
+    }
 }

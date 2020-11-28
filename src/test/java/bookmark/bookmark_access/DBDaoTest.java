@@ -23,7 +23,7 @@ public class DBDaoTest {
     
     @Before
     public void setUp() {
-        book = new Book("Lost in the Andes!", "Carl Barks", 32);
+        book = new Book("Lost in the Andes!", "Carl Barks", 32, 0);
         this.dbDao = new DBDao("test.db");
     }
     

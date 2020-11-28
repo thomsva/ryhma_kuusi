@@ -38,7 +38,6 @@ public class App {
                 String author = io.readLine("Author: ");
                 String pages = io.readLine("number of pages: ");
                
-               
                 if (service.addBook(title, author, pages)) {
                     io.print("Book added successfully");
                     
