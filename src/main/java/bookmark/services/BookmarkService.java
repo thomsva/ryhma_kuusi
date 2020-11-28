@@ -9,7 +9,6 @@ import bookmark.bookmark_access.BookDao;
 import bookmark.domain.Book;
 import java.util.Collections;
 import java.util.List;
-import bookmark.io.ConsoleIO;
 import bookmark.io.IO;
 
 /**
