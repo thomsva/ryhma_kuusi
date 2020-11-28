@@ -61,7 +61,6 @@ public class Stepdefs {
     
     @Then("system will respond with {string}")
     public void systemRespondsWithExpectedOutput(String expectedOutput) {
-        System.out.println("ohjelma tulosti seuraavat rivit "+io.getPrints());
         assertTrue(io.getPrints().contains(expectedOutput));
     }
 
@@ -76,10 +75,6 @@ public class Stepdefs {
     public void commandListIsSelected() {
         inputLines.add("list");
         runApp();
-    }
-
-    @Given("invalid command")
-    public void doNotginh() {
     }
 
     @When("command {string} is selected")
