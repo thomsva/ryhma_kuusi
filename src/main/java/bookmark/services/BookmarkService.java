@@ -34,7 +34,7 @@ public class BookmarkService {
         
         if (!inputPages.matches(regex)) {
             return false;
-        } else if (inputTitle.isEmpty() || inputAuthor.isEmpty() || inputPages.isEmpty()) {
+        } else if (isBlankOrEmprty(inputTitle, inputAuthor, inputPages)) {
             return false;
         } else {
             int pages = Integer.parseInt(inputPages);
@@ -56,6 +56,16 @@ public class BookmarkService {
                             + " | Author: " + book.getAuthor()
                             + " | Number of pages: " + book.getNumberOfPages());
                 });
+    }
+    
+    private boolean isBlankOrEmprty(String inputTitle, String inputAuthor, String inputPages) {
+        if (inputTitle.trim().isEmpty() || inputTitle.trim().isBlank()) {
+            return true;
+        } else if (inputAuthor.trim().isEmpty() || inputAuthor.trim().isBlank()) {
+            return true;
+        } else {
+            return inputPages.trim().isEmpty() || inputPages.trim().isBlank();
+        }
     }
     
     
