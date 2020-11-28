@@ -57,22 +57,24 @@ public class BookmarkService {
         }
     }
 
-    public String modifyCurrentPage(String id_s, String page_s) {
+    public String modifyCurrentPage(String idString, String pageString) {
 
         int id;
         int page;
         Book book;
 
         try {
-            id = Integer.parseInt(id_s);
-            page = Integer.parseInt(page_s);
+            id = Integer.parseInt(idString);
+            page = Integer.parseInt(pageString);
         } catch (NumberFormatException e) {
             return "Error! ID and page should be numbers.";
         }
 
         try {
             book = bookDao.getBookById(id);
-            if (book.equals(null)) return "placeholder text";
+            if (book.equals(null)) {
+                return "placeholder text";
+            }
         } catch (Exception e) {
             return "Error! Book ID not found.";
         }

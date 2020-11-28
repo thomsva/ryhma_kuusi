@@ -8,5 +8,5 @@ public interface BookDao {
     List<Book> listAll();
     void add(Book book);
     void modifyCurrentPage(int id, int page);
-    public Book getBookById(int id);
+    Book getBookById(int id);
 }

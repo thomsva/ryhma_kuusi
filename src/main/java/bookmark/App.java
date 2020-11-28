@@ -49,9 +49,13 @@ public class App {
                     break;
                 case "modpage":
                     String id = io.readLine("Book's id (empty to return):");
-                    if (id.equals("")) break;
+                    if (id.equals("")) {
+                        break;
+                    }
                     String page = io.readLine("Page you are currently on (empty to return):");
-                    if (page.equals("")) break;
+                    if (page.equals("")) {
+                        break;
+                    }
                     io.print(service.modifyCurrentPage(id, page));
                     break;
                 default:
