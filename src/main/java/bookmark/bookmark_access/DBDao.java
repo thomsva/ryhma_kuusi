@@ -75,6 +75,7 @@ public class DBDao implements BookDao {
             }
         }
     }
+    
     private Connection connect() {
         Connection connection = null;
         try {
@@ -123,5 +124,4 @@ public class DBDao implements BookDao {
             System.err.println(e.getMessage());
         }
     }
-
 }
