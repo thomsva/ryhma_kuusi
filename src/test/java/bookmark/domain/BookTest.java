@@ -16,7 +16,7 @@ public class BookTest {
     
     @Test
     public void createNewBookwithTitleAuthorAndNumberOfPages() {
-        book = new Book("title", "author", 1);
+        book = new Book("title", "author", 1, 0);
         assertEquals("title", book.getTitle());
         assertEquals("author", book.getAuthor());
         assertEquals(1, book.getNumberOfPages());

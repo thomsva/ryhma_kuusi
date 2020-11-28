@@ -17,7 +17,7 @@ public class InMemoryBookDaoTest {
     
     @Before
     public void setup() {
-        book = new Book("Lost in the Andes!", "Carl Barks", 32);
+        book = new Book("Lost in the Andes!", "Carl Barks", 32, 0);
         this.bookDao = new InMemoryBookDao();
     }
     

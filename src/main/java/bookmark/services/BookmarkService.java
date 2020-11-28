@@ -38,7 +38,7 @@ public class BookmarkService {
             return false;
         } else {
             int pages = Integer.parseInt(inputPages);
-            Book book = new Book(inputTitle, inputAuthor, pages);
+            Book book = new Book(inputTitle, inputAuthor, pages, 0);
             bookDao.add(book);
         
         return true;
@@ -52,9 +52,11 @@ public class BookmarkService {
        List<Book> bookList = bookDao.listAll();
        
        bookList.forEach((book) -> {
-                    System.out.println("Title: " + book.getTitle()
+                    System.out.println("Id: " + book.getId()
+                            + " | Title: " + book.getTitle()
                             + " | Author: " + book.getAuthor()
-                            + " | Number of pages: " + book.getNumberOfPages());
+                            + " | Number of pages: " + book.getNumberOfPages()
+                            + " | Current page: " + book.getCurrentPage());
                 });
     }
     

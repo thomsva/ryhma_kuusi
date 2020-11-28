@@ -37,7 +37,8 @@ public class DBDao implements BookDao {
         try {
           ResultSet rs = getBooksResultSet(connection);
           while (rs.next()) {
-            Book book = new Book(rs.getString("title"), rs.getString("author"), rs.getInt("pages"));
+            Book book = new Book(rs.getInt("id"), rs.getString("title"), rs.getString("author"), rs.getInt("pages"),
+                    rs.getInt("currentpage"));
             books.add(book);
           }
         } catch (SQLException e) {
@@ -66,7 +67,7 @@ public class DBDao implements BookDao {
             connection = connect();
             Statement statement = connection.createStatement();
             statement.execute("CREATE TABLE Book (id INTEGER PRIMARY KEY, "
-                    + "title TEXT NOT NULL, author TEXT NOT NULL, pages INTEGER)");
+                    + "title TEXT NOT NULL, author TEXT NOT NULL, pages INTEGER, currentpage INTEGER)");
             } catch (SQLException e) {
                 System.err.println(e.getMessage());
             } finally {
@@ -89,11 +90,14 @@ public class DBDao implements BookDao {
         final int eka = 1;
         final int toka = 2;
         final int kolmas = 3;
+        final int neljas = 4;
         try {
-            PreparedStatement p = connection.prepareStatement("INSERT INTO Book (title,author,pages) VALUES (?,?,?)");
+            PreparedStatement p = connection
+                    .prepareStatement("INSERT INTO Book (title,author,pages, currentpage) VALUES (?,?,?,?)");
             p.setString(eka, book.getTitle());
             p.setString(toka, book.getAuthor());
             p.setInt(kolmas, book.getNumberOfPages());
+            p.setInt(neljas, book.getCurrentPage());
             p.executeUpdate();
         } catch (SQLException e) {
             System.err.println(e.getMessage());

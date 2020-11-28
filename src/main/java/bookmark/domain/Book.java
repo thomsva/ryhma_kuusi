@@ -5,8 +5,10 @@ package bookmark.domain;
  */
 public class Book extends Bookmark {
     
+    private int id;
     private String author; 
     private int numberOfPages;
+    private int currentPage;
     
     /**
      * Create book with specific title.
@@ -24,10 +26,20 @@ public class Book extends Bookmark {
      * @param newNumberOfPages
      */
     public Book(final String newBookTitle, 
-            String newAuthor, int newNumberOfPages) {
+            String newAuthor, int newNumberOfPages, int newCurrentPage) {
         super(newBookTitle);
         this.author = newAuthor;
         this.numberOfPages = newNumberOfPages;
+        this.currentPage = newCurrentPage;
+    }
+    
+    public Book(int newId, final String newBookTitle, 
+            String newAuthor, int newNumberOfPages, int newCurrentPage) {
+        super(newBookTitle);
+        this.id = newId;
+        this.author = newAuthor;
+        this.numberOfPages = newNumberOfPages;
+        this.currentPage = newCurrentPage;
     }
 
     /**
@@ -56,6 +68,18 @@ public class Book extends Bookmark {
      */
     public int getNumberOfPages() {
         return numberOfPages;
+    }
+
+    public int getCurrentPage() {
+        return currentPage;
+    }
+
+    public void setCurrentPage(int currentPage) {
+        this.currentPage = currentPage;
+    }
+
+    public int getId() {
+        return id;
     }
     
 }
