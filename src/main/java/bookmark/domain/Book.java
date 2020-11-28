@@ -4,36 +4,37 @@ package bookmark.domain;
  * Representing books.
  */
 public class Book extends Bookmark {
-    
+
     private int id;
-    private String author; 
+    private String author;
     private int numberOfPages;
     private int currentPage;
-    
+
     /**
      * Create book with specific title.
+     *
      * @param newBookTitle
      */
-    
     public Book(final String newBookTitle) {
         super(newBookTitle);
     }
-    
+
     /**
      * Create book with specific title, author and number of pages.
+     *
      * @param newBookTitle
      * @param newAuthor
      * @param newNumberOfPages
      */
-    public Book(final String newBookTitle, 
+    public Book(final String newBookTitle,
             String newAuthor, int newNumberOfPages, int newCurrentPage) {
         super(newBookTitle);
         this.author = newAuthor;
         this.numberOfPages = newNumberOfPages;
         this.currentPage = newCurrentPage;
     }
-    
-    public Book(int newId, final String newBookTitle, 
+
+    public Book(int newId, final String newBookTitle,
             String newAuthor, int newNumberOfPages, int newCurrentPage) {
         super(newBookTitle);
         this.id = newId;
@@ -81,5 +82,5 @@ public class Book extends Bookmark {
     public int getId() {
         return id;
     }
-    
+
 }

@@ -1,4 +1,3 @@
-
 package bookmark.bookmark_access;
 
 import bookmark.domain.Book;
@@ -17,7 +16,7 @@ import java.util.List;
  * @author kaila
  */
 public class DBDao implements BookDao {
-    
+
     private final String url;
     private final List<Book> books;
 
@@ -26,7 +25,7 @@ public class DBDao implements BookDao {
         books = new ArrayList<>();
         createDatabaseAndTablesIfDoNotExists(dbName);
     }
-  
+
     /**
      * @return the list containing all books
      */
@@ -35,20 +34,20 @@ public class DBDao implements BookDao {
         books.clear();
         Connection connection = connect();
         try {
-          ResultSet rs = getBooksResultSet(connection);
-          while (rs.next()) {
-            Book book = new Book(rs.getInt("id"), rs.getString("title"), rs.getString("author"), rs.getInt("pages"),
-                    rs.getInt("currentpage"));
-            books.add(book);
-          }
+            ResultSet rs = getBooksResultSet(connection);
+            while (rs.next()) {
+                Book book = new Book(rs.getInt("id"), rs.getString("title"), rs.getString("author"), rs.getInt("pages"),
+                        rs.getInt("currentpage"));
+                books.add(book);
+            }
         } catch (SQLException e) {
-          System.err.println(e.getMessage());
+            System.err.println(e.getMessage());
         } finally {
             closeConnection(connection);
         }
         return books;
     }
-    
+
     /**
      * @param book - Book object to be added
      */
@@ -56,7 +55,23 @@ public class DBDao implements BookDao {
     public void add(Book book) {
         Connection connection = connect();
         addBookStatement(connection, book);
-        closeConnection(connection);   
+        closeConnection(connection);
+    }
+    
+    @Override
+    public void modifyCurrentPage(int id, int page){
+            
+        Connection connection = connect();
+        
+        try {            
+            PreparedStatement p = connection.prepareStatement("UPDATE Book "
+                    + "SET currentpage = (?) WHERE id = (?)");
+            p.setInt(1, page);
+            p.setInt(2, id);
+            p.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     private void createDatabaseAndTablesIfDoNotExists(String newDBname) {
@@ -64,10 +79,10 @@ public class DBDao implements BookDao {
         File file = new File(newDBname);
         if (!file.exists()) {
             try {
-            connection = connect();
-            Statement statement = connection.createStatement();
-            statement.execute("CREATE TABLE Book (id INTEGER PRIMARY KEY, "
-                    + "title TEXT NOT NULL, author TEXT NOT NULL, pages INTEGER, currentpage INTEGER)");
+                connection = connect();
+                Statement statement = connection.createStatement();
+                statement.execute("CREATE TABLE Book (id INTEGER PRIMARY KEY, "
+                        + "title TEXT NOT NULL, author TEXT NOT NULL, pages INTEGER, currentpage INTEGER)");
             } catch (SQLException e) {
                 System.err.println(e.getMessage());
             } finally {
@@ -75,18 +90,18 @@ public class DBDao implements BookDao {
             }
         }
     }
-    
+
     private Connection connect() {
         Connection connection = null;
         try {
-          connection = DriverManager.getConnection(url);
-          Statement statement = connection.createStatement();
+            connection = DriverManager.getConnection(url);
+            Statement statement = connection.createStatement();
         } catch (SQLException e) {
-          System.err.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return connection;
     }
-    
+
     private void addBookStatement(Connection connection, Book book) {
         final int eka = 1;
         final int toka = 2;
@@ -104,7 +119,7 @@ public class DBDao implements BookDao {
             System.err.println(e.getMessage());
         }
     }
-    
+
     private ResultSet getBooksResultSet(Connection connection) {
         try {
             Statement statement = connection.createStatement();
@@ -114,7 +129,7 @@ public class DBDao implements BookDao {
         }
         return null;
     }
-    
+
     private void closeConnection(Connection connection) {
         try {
             if (connection != null) {
@@ -123,5 +138,5 @@ public class DBDao implements BookDao {
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
-    }
+    }    
 }

@@ -14,24 +14,26 @@ import java.util.List;
  * @author iida
  */
 public class BookmarkService {
-    
-    
+
     private BookDao bookDao;
-    
+
     public BookmarkService(BookDao bookDao) {
         this.bookDao = bookDao;
     }
-     /**
+
+    /**
      * calls BookDao's method add to add book
+     *
      * @param inputTitle title user entered
-     * @param inputAuthor author user entered 
+     * @param inputAuthor author user entered
      * @param inputPages pages user entered
-     * @return return true if inputs were valid and book was added, otherwise false
+     * @return return true if inputs were valid and book was added, otherwise
+     * false
      */
     public boolean addBook(String inputTitle, String inputAuthor, String inputPages) {
-        
+
         String regex = "^[0-9]+";
-        
+
         if (!inputPages.matches(regex)) {
             return false;
         } else if (inputTitle.isEmpty() || inputAuthor.isEmpty() || inputPages.isEmpty()) {
@@ -40,25 +42,27 @@ public class BookmarkService {
             int pages = Integer.parseInt(inputPages);
             Book book = new Book(inputTitle, inputAuthor, pages, 0);
             bookDao.add(book);
-        
-        return true;
-        }
 
+            return true;
+        }
     }
-     /**
+
+    public void modifyCurrentPage(int id, int page) {
+        bookDao.modifyCurrentPage(id, page);
+    }
+
+    /**
      * calls BookDao's method listAll to list books
      */
     public void listBooks() {
-       List<Book> bookList = bookDao.listAll();
-       
-       bookList.forEach((book) -> {
-                    System.out.println("Id: " + book.getId()
-                            + " | Title: " + book.getTitle()
-                            + " | Author: " + book.getAuthor()
-                            + " | Number of pages: " + book.getNumberOfPages()
-                            + " | Current page: " + book.getCurrentPage());
-                });
+        List<Book> bookList = bookDao.listAll();
+
+        bookList.forEach((book) -> {
+            System.out.println("Id: " + book.getId()
+                    + " | Title: " + book.getTitle()
+                    + " | Author: " + book.getAuthor()
+                    + " | Number of pages: " + book.getNumberOfPages()
+                    + " | Current page: " + book.getCurrentPage());
+        });
     }
-    
-    
 }

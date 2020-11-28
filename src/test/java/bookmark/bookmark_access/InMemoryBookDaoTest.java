@@ -12,7 +12,7 @@ import static org.junit.Assert.assertNull;
  */
 public class InMemoryBookDaoTest {
     
-    private Book book, book2;
+        private Book book, book2;
     private BookDao bookDao;
     
     @Before
@@ -32,5 +32,5 @@ public class InMemoryBookDaoTest {
         this.book2 = new Book("Title only");
         bookDao.add(book2);
         assertNull(bookDao.listAll().get(0).getAuthor());
-    }
+    }    
 }

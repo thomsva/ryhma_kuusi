@@ -6,28 +6,31 @@ import java.util.List;
 
 /**
  *
- * @author hcjami
+ * @author blakaut
  */
-public class InMemoryBookDao implements BookDao {
-    
+public class InMemoryBookDao //implements BookDao 
+{
+
     private List<Book> books = new ArrayList<>();
-    
+
     public InMemoryBookDao() {
         books = new ArrayList<>();
-    } 
-    
+    }
+
     /**
      * @return the list containing all books
      */
-    @Override
+    
+    //@Override
     public List<Book> listAll() {
         return books;
     }
-    
+
     /**
      * @param book - Book object to be added
      */
-    @Override
+    
+    //@Override
     public void add(Book book) {
         books.add(book);
     }
