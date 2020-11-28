@@ -57,13 +57,35 @@ public class DBDao implements BookDao {
         addBookStatement(connection, book);
         closeConnection(connection);
     }
-    
+
     @Override
-    public void modifyCurrentPage(int id, int page){
-            
+    public Book getBookById(int id) {
         Connection connection = connect();
+        ResultSet rs;
+        Book book = null;
+
+        try {
+            Statement statement = connection.createStatement();
+            String sql = "select * from book WHERE id = " + id;
+            rs = statement.executeQuery(sql);
+            book = new Book(rs.getInt("id"), rs.getString("title"), rs.getString("author"), rs.getInt("pages"),
+                    rs.getInt("currentpage"));
+        } catch (SQLException e) {
+            //System.err.println(e.getMessage());
+        } finally {
+            closeConnection(connection);
+        }
         
-        try {            
+        return book;
+
+    }
+
+    @Override
+    public void modifyCurrentPage(int id, int page) {
+
+        Connection connection = connect();
+
+        try {
             PreparedStatement p = connection.prepareStatement("UPDATE Book "
                     + "SET currentpage = (?) WHERE id = (?)");
             p.setInt(1, page);
@@ -71,6 +93,8 @@ public class DBDao implements BookDao {
             p.executeUpdate();
         } catch (SQLException e) {
             System.err.println(e.getMessage());
+        } finally {
+            closeConnection(connection);
         }
     }
 
@@ -138,5 +162,5 @@ public class DBDao implements BookDao {
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
-    }    
+    }
 }

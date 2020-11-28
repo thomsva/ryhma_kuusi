@@ -2,7 +2,7 @@ package bookmark.domain;
 
 
 
-public class Bookmark {
+public class Bookmark implements Comparable<Bookmark> {
     
     private String title;
 
@@ -22,6 +22,11 @@ public class Bookmark {
      */
     public void setTitle(final String newTitle) {
         this.title = newTitle;
+    }
+
+    @Override
+    public int compareTo(Bookmark o) {
+        return this.getTitle().compareTo(o.getTitle());
     }
     
 }

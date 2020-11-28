@@ -6,7 +6,9 @@ plugins {
     id "com.github.johnrengelman.shadow" version "6.1.0"
 }
 
+
 mainClassName = 'bookmark.App'
+
 
 /*
 application {
@@ -18,10 +20,12 @@ checkstyleMain.exclude ('bookmark.Main.java')
 
 checkstyleTest.exclude ('/bookmark/cucumber/*.java')
 
+
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 }
+
 
 repositories {
     jcenter()

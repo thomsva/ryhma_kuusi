@@ -7,7 +7,9 @@ package bookmark.services;
 
 import bookmark.bookmark_access.BookDao;
 import bookmark.domain.Book;
+import java.util.Collections;
 import java.util.List;
+import bookmark.io.IO;
 
 /**
  *
@@ -15,10 +17,12 @@ import java.util.List;
  */
 public class BookmarkService {
 
-    private BookDao bookDao;
+    private final IO io;
+    private final BookDao bookDao;
 
-    public BookmarkService(BookDao bookDao) {
+    public BookmarkService(BookDao bookDao, IO io) {
         this.bookDao = bookDao;
+        this.io = io;
     }
 
     /**
@@ -27,42 +31,85 @@ public class BookmarkService {
      * @param inputTitle title user entered
      * @param inputAuthor author user entered
      * @param inputPages pages user entered
+     * @param currentPage Page number user is on
      * @return return true if inputs were valid and book was added, otherwise
      * false
      */
-    public boolean addBook(String inputTitle, String inputAuthor, String inputPages) {
+    public boolean addBook(String inputTitle, String inputAuthor, String inputPages, String currentPage) {
 
         String regex = "^[0-9]+";
 
-        if (!inputPages.matches(regex)) {
+        if (!inputPages.matches(regex) || !currentPage.matches(regex)) {
             return false;
-        } else if (inputTitle.isEmpty() || inputAuthor.isEmpty() || inputPages.isEmpty()) {
+        } else if (Integer.parseInt(inputPages) < Integer.parseInt(currentPage)) {
+            return false;
+        } else if (Integer.parseInt(currentPage) < 0) {
+            return false;
+        } else if (isBlankOrEmprty(inputTitle, inputAuthor, inputPages)) {
             return false;
         } else {
             int pages = Integer.parseInt(inputPages);
-            Book book = new Book(inputTitle, inputAuthor, pages, 0);
+            int curPage = Integer.parseInt(currentPage);
+            Book book = new Book(inputTitle, inputAuthor, pages, curPage);
             bookDao.add(book);
 
             return true;
         }
     }
 
-    public void modifyCurrentPage(int id, int page) {
-        bookDao.modifyCurrentPage(id, page);
+    public String modifyCurrentPage(String id_s, String page_s) {
+
+        int id;
+        int page;
+        Book book;
+
+        try {
+            id = Integer.parseInt(id_s);
+            page = Integer.parseInt(page_s);
+        } catch (NumberFormatException e) {
+            return "Error! ID and page should be numbers.";
+        }
+
+        try {
+            book = bookDao.getBookById(id);
+            if (book.equals(null)) return "placeholder text";
+        } catch (Exception e) {
+            return "Error! Book ID not found.";
+        }
+
+        if (book.getNumberOfPages() < page) {
+            return "Error! Current page cannot be higher than the number of pages.";
+        } else if (page < 0) {
+            return "Error! Current page cannot lower than zero.";
+        } else {
+            bookDao.modifyCurrentPage(id, page);
+            return "Book's progress successfully updated!";
+        }
     }
 
     /**
      * calls BookDao's method listAll to list books
      */
     public void listBooks() {
-        List<Book> bookList = bookDao.listAll();
 
+        List<Book> bookList = bookDao.listAll();
+        Collections.sort(bookList);
         bookList.forEach((book) -> {
-            System.out.println("Id: " + book.getId()
+            io.print("Id: " + book.getId()
                     + " | Title: " + book.getTitle()
                     + " | Author: " + book.getAuthor()
                     + " | Number of pages: " + book.getNumberOfPages()
                     + " | Current page: " + book.getCurrentPage());
         });
+    }
+
+    private boolean isBlankOrEmprty(String inputTitle, String inputAuthor, String inputPages) {
+        if (inputTitle.trim().isEmpty() || inputTitle == null) {
+            return true;
+        } else if (inputAuthor.trim().isEmpty() || inputAuthor == null) {
+            return true;
+        } else {
+            return inputPages.trim().isEmpty() || inputPages == null;
+        }
     }
 }
