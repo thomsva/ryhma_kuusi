@@ -89,8 +89,7 @@ public class Stepdefs {
         inputLines.add(pages);
         inputLines.add(currentPage);
         runApp();
-    }
-    
+    }  
     
     @Then("system will respond with {string}")
     public void systemRespondsWithExpectedOutput(String expectedOutput) {
