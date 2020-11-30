@@ -33,6 +33,10 @@ public class BookmarkService {
      * false
      */
     public boolean addBook(String inputTitle, String inputAuthor, String inputPages, String currentPage) {
+        
+        if (isBlankOrEmpty(currentPage)) {
+            currentPage = "0";
+        }
 
         String regex = "^[0-9]+";
 
@@ -42,7 +46,7 @@ public class BookmarkService {
             return false;
         } else if (Integer.parseInt(currentPage) < 0) {
             return false;
-        } else if (isBlankOrEmpty(inputTitle, inputAuthor, inputPages)) {
+        } else if (isBlankOrEmpty(inputTitle) || isBlankOrEmpty(inputAuthor) || isBlankOrEmpty(inputPages)) {
             return false;
         } else {
             int pages = Integer.parseInt(inputPages);
@@ -102,13 +106,10 @@ public class BookmarkService {
         });
     }
 
-    private boolean isBlankOrEmpty(String inputTitle, String inputAuthor, String inputPages) {
-        if (inputTitle.trim().isEmpty() || inputTitle == null) {
+    private boolean isBlankOrEmpty(String input) {
+        if (input.trim().isEmpty() || input == null) {
             return true;
-        } else if (inputAuthor.trim().isEmpty() || inputAuthor == null) {
-            return true;
-        } else {
-            return inputPages.trim().isEmpty() || inputPages == null;
         }
+        return false;
     }
 }
