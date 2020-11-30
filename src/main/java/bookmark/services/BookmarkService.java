@@ -11,10 +11,7 @@ import java.util.Collections;
 import java.util.List;
 import bookmark.io.IO;
 
-/**
- *
- * @author iida
- */
+
 public class BookmarkService {
 
     private final IO io;
@@ -45,7 +42,7 @@ public class BookmarkService {
             return false;
         } else if (Integer.parseInt(currentPage) < 0) {
             return false;
-        } else if (isBlankOrEmprty(inputTitle, inputAuthor, inputPages)) {
+        } else if (isBlankOrEmpty(inputTitle, inputAuthor, inputPages)) {
             return false;
         } else {
             int pages = Integer.parseInt(inputPages);
@@ -105,7 +102,7 @@ public class BookmarkService {
         });
     }
 
-    private boolean isBlankOrEmprty(String inputTitle, String inputAuthor, String inputPages) {
+    private boolean isBlankOrEmpty(String inputTitle, String inputAuthor, String inputPages) {
         if (inputTitle.trim().isEmpty() || inputTitle == null) {
             return true;
         } else if (inputAuthor.trim().isEmpty() || inputAuthor == null) {

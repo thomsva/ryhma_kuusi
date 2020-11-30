@@ -44,6 +44,10 @@ dependencies {
 
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.7'
 }
+test {
+    testLogging.showStandardStreams = true
+    systemProperties System.getProperties()
+}
 
 jar { 
     manifest {

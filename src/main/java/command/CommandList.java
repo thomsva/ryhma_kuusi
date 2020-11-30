@@ -1,7 +1,6 @@
 package command;
 
 import java.util.ArrayList;
-import org.apache.commons.lang3.StringUtils;
 
 class Command { 
 
@@ -19,11 +18,12 @@ class Command {
         @Override
         public String toString() {
             return name + shortcut + description;
-        }}
+        } 
+}
 
     public class CommandList {
 
-        ArrayList<Command> commands;
+        private ArrayList<Command> commands;
 
         public CommandList() {
             this.commands = new ArrayList<>();
@@ -31,6 +31,7 @@ class Command {
             commands.add(new Command("|===========|", "===========|", "========================================="));
             commands.add(new Command("| add book  |", " a         |", " Add a book to bookmarks."));
             commands.add(new Command("| list      |", " l         |", " List all bookmarks."));
+            commands.add(new Command("| modpage   |", " m         |", " Modify current page."));
             commands.add(new Command("| help      |", " h         |", " Show commands, shortcuts and descriptions."));
         }
 

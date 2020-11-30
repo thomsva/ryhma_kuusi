@@ -4,6 +4,7 @@ package bookmark.cucumber;
 import bookmark.App;
 import bookmark.bookmark_access.BookDao;
 import bookmark.bookmark_access.DBDao;
+import bookmark.domain.Book;
 import bookmark.io.StubIO;
 import bookmark.services.BookmarkService;
 import io.cucumber.java.Before;
@@ -24,10 +25,12 @@ public class Stepdefs {
     private BookmarkService service;
     private StubIO io;
     
+    
     @Before
     public void setUp() {
         bookDao = new DBDao("cucumberTest.db");   
-        inputLines = new ArrayList<>();  
+        inputLines = new ArrayList<>(); 
+        bookDao.add(new Book("Kirja1", "kirjailija1",100,1)); //id 1     
     }
     
     @After
@@ -40,47 +43,72 @@ public class Stepdefs {
     public void commandAddBookSelected() {
         inputLines.add("add book");
     }
+     
     
-    @When("valid title {string} and author {string} and pages {string} are entered")
-    public void validTitleAuthorAndPagesAreEntered(String title, String author, String pages) {
+    @When("valid title {string} and author {string} and pages {string} and current page {string} are entered")
+    public void validTitleAuthorAndPagesAreEntered(String title, String author, String pages, String currentPage) {
         inputLines.add(title);
         inputLines.add(author);
         inputLines.add(pages);
+        inputLines.add(currentPage);
         runApp();
     }
     
-    @When("valid title {string} and author {string} and invalid pages {string} are entered")
-    public void validTitleAuthorAndInvalidPagesAreEntered(String title, String author, String pages) {
+    @When("valid title {string} and author {string} and invalid pages {string} and current page {string} are entered")
+    public void validTitleAuthorAndInvalidPagesAreEntered(String title, String author, String pages, String currentPage) {
         inputLines.add(title);
         inputLines.add(author);
         inputLines.add(pages);
+        inputLines.add(currentPage);
         runApp();
     }
     
-    @When("invalid title {string} and  valid author {string} and valid pages {string} are entered")
-    public void invalidTitleValidAuthorAndValidPagesAreEntered(String title, String author, String pages) {
+    @When("invalid title {string} and  valid author {string} and valid pages {string} and current page {string} are entered")
+    public void invalidTitleValidAuthorAndValidPagesAreEntered(String title, String author, String pages, String currentPage) {
+        inputLines.add("add book");
         inputLines.add(title);
         inputLines.add(author);
         inputLines.add(pages);
+        inputLines.add(currentPage);
         runApp();
     }
+    @When("valid title {string} and  invalid author {string} and valid pages {string} and current page {string} are entered")
+    public void validTitleInvalidAuthorAndValidPagesAreEntered(String title, String author, String pages, String currentPage) {
+        inputLines.add("add book");
+        inputLines.add(title);
+        inputLines.add(author);
+        inputLines.add(pages);
+        inputLines.add(currentPage);
+        runApp();
+    }
+    
+    @When("valid title {string} and author {string} and valid pages {string} and invalid current page {string} are entered")
+    public void invalidCurrentpageIsEntered(String title, String author, String pages, String currentPage) {
+        inputLines.add(title);
+        inputLines.add(author);
+        inputLines.add(pages);
+        inputLines.add(currentPage);
+        runApp();
+    }
+    
     
     @Then("system will respond with {string}")
     public void systemRespondsWithExpectedOutput(String expectedOutput) {
+        System.out.println("tulostus " + io.getPrints());
         assertTrue(io.getPrints().contains(expectedOutput));
     }
 
-    @Given("create book title {string}, author {string} and pages {string}")
-    public void createBooks(String title, String author, String pages) {
-        inputLines.add(title);
-        inputLines.add(author);
-        inputLines.add(pages);
-    }
 
     @When("command list is selected")
     public void commandListIsSelected() {
         inputLines.add("list");
         runApp();
+        
+    }
+    @Given("command modpage is selected")
+    public void commandModifyPage() {
+        inputLines.add("modpage");
+        
     }
 
     @When("command {string} is selected")
@@ -88,6 +116,24 @@ public class Stepdefs {
         inputLines.add(command);
         runApp();
     }
+    
+    @When("book's id {string} is entered and current page {string} is entered")
+    public void getBookByIdAndEditPage(String id, String currentPage) {
+        int bookId = Integer.parseInt(id);
+        int page = Integer.parseInt(currentPage);
+        bookDao.modifyCurrentPage(bookId, page);
+        inputLines.add(id);
+        inputLines.add(currentPage);
+        runApp();
+    }
+    
+    
+    @Then("list will contain {string}")
+    public void listContainsBook(String expected) {
+        System.out.println("tulostus " + io.getPrints());
+        assertTrue(io.getPrints().contains(expected));
+    }
+    
     
     private void runApp() {
         io = new StubIO(inputLines); 
