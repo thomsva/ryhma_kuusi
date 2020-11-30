@@ -30,7 +30,7 @@ public class Stepdefs {
     public void setUp() {
         bookDao = new DBDao("cucumberTest.db");   
         inputLines = new ArrayList<>(); 
-        bookDao.add(new Book("Kirja1", "kirjailija1",100,1)); //id 1     
+        bookDao.add(new Book("Kirja1", "kirjailija1", 100, 1)); //id 1, book with id 2 will be created in add book feature   
     }
     
     @After
@@ -83,7 +83,7 @@ public class Stepdefs {
     }
     
     @When("valid title {string} and author {string} and valid pages {string} and invalid current page {string} are entered")
-    public void invalidCurrentpageIsEntered(String title, String author, String pages, String currentPage) {
+    public void validTitleAuthorPageInvalidCurrentpageAreEntered(String title, String author, String pages, String currentPage) {
         inputLines.add(title);
         inputLines.add(author);
         inputLines.add(pages);
@@ -114,10 +114,11 @@ public class Stepdefs {
     @When("command {string} is selected")
     public void customCommandSelected(String command) {
         inputLines.add(command);
+        
         runApp();
     }
     
-    @When("book's id {string} is entered and current page {string} is entered")
+    @When("book's id {string} and current page {string} is entered")
     public void getBookByIdAndEditPage(String id, String currentPage) {
         int bookId = Integer.parseInt(id);
         int page = Integer.parseInt(currentPage);
@@ -126,6 +127,19 @@ public class Stepdefs {
         inputLines.add(currentPage);
         runApp();
     }
+    @When("book's id {string} and invalid current page {string} is entered")
+    public void invalidCurrentPageIsEntered(String id, String currentPage) {
+        inputLines.add(id);
+        inputLines.add(currentPage);
+        runApp();
+    }
+    
+    @When("invalid book's id {string} and valid current page {string} is entered")
+    public void invalidIdIsEntered(String id, String currentPage) {
+        inputLines.add(id);
+        inputLines.add(currentPage);
+        runApp();
+    }   
     
     
     @Then("list will contain {string}")
