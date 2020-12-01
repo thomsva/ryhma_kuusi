@@ -1,6 +1,6 @@
 # ryhma_kuusi
 
-![Github Actions](https://github.com/LindaJT/ryhma_kuusi/workflows/Java%20CI%20with%20Gradle/badge.svg)
+![Github Actions](https://github.com/LindaJT/ryhma_kuusi/BookmarkApp/workflows/Java%20CI%20with%20Gradle/badge.svg)
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE.txt)
 [![codecov](https://codecov.io/gh/LindaJT/ryhma_kuusi/branch/main/graph/badge.svg?token=NQHsmcDB95)](https://codecov.io/gh/LindaJT/ryhma_kuusi)
 
