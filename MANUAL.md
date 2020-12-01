@@ -10,10 +10,16 @@ Run the program using your system's command line (for example, in Windows it wou
 
 ### Using the application
 
-In these early stages of development, using the application should be quite self-explanatory. The application will guide you in adding books and listing them. The application doesn't (yet) have an in-built manual, other than the prompts is gives while running.
+The functionality of the application is listed when the application is launched. 
 
-In short, you can give two types of commands in the application: either type 'add book' or 'list' to add a book or list all books that you've added. When adding a book, the program will prompt you to give your addition a title, an author and the number of pages.
+Adding a book to bookmarks can be done with the command **`add book`** or the shortcut **`a`**. The app then asks for the title, author, page count and the current page of the book. With the exception of the current page, all information is mandatory in order to add a bookmark. 
+
+All recorded bookmarks can be listed using the command **`list`** or the shortcut **`l`**. In this case, a list of information for all books is printed, including id, name, author, page number and current page. 
+
+The current page number can be modified using the command **`modpage`** or the shortcut **`m`**. Book selection occurs based on the id you can find out using the `list` command. The new page number may be at most the stated page count of the book. 
+
+The command **`help`** or the shortcut **`h`** prints a list of program functionality and commands to use them.
 
 ### Building from source
 
-Use command `./gradlew ShadowJar`
+Use command **`./gradlew ShadowJar`**  in the directory where the code of the application is located.
