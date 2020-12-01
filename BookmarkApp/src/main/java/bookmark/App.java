@@ -33,7 +33,6 @@ public class App {
 
             String nextCommand = io.readLine("give a command or leave empty to quit:");
 
-            //String command = io.readLine("command ('add book', 'list' or 'modpage') or leave empty to quit:");
             if (nextCommand.isEmpty()) {
                 break;
             }
@@ -71,6 +70,7 @@ public class App {
     }
 
     public void modifyPage() {
+        io.print("If necessary, check id with the command 'list'.");
         String id = io.readLine("Book's id (empty to return):");
         if (id.equals("")) {
             return;
