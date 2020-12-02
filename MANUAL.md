@@ -12,7 +12,7 @@ Run the program using your system's command line (for example, in Windows it wou
 
 The functionality of the application is listed when the application is launched. 
 
-Adding a book to bookmarks can be done with the command **`add book`** or the shortcut **`a`**. The app then asks for the title, author, page count and the current page of the book. With the exception of the current page, all information is mandatory in order to add a bookmark. 
+Adding a book to bookmarks can be done with the command **`add book`** or the shortcut **`a`**. The app then asks for the title, author, page count and the current page of the book. With the exception of the current page, all information is mandatory in order to add a bookmark. If current page is left empty, it will be 0.
 
 All recorded bookmarks can be listed using the command **`list`** or the shortcut **`l`**. In this case, a list of information for all books is printed, including id, name, author, page number and current page. 
 
