@@ -8,6 +8,8 @@ The program is a jar-file. You can run such a file using Java, which itself supp
 
 Run the program using your system's command line (for example, in Windows it would be 'cmd.exe'). On the command line, navigate to the folder where you downloaded the jar-file and run the command `java -jar BookmarkApp_01.jar` (where the last part is the file's name -- change it if needed).
 
+Please note that using the application will cause a database file 'bookmark.db' to be created in the jar-file's folder. This file contains your saved data regarding the bookmarks, so avoid manipulating it in any way.
+
 ### Using the application
 
 The functionality of the application is listed when the application is launched. 
