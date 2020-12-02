@@ -2,7 +2,6 @@
 package service;
 
 import bookmark.bookmark_access.BookDao;
-import bookmark.bookmark_access.InMemoryBookDao;
 import bookmark.domain.Book;
 import bookmark.io.StubIO;
 import bookmark.services.BookmarkService;
@@ -63,6 +62,18 @@ public class BookmarkServiceTest {
         assertTrue(success);
         assertEquals(2, bookDao.listAll().size());
     }
+    
+    @Test
+    public void cannotAddBookWithNegativeCurrentPage() {
+        Boolean success = service.addBook("testi", "testaaja", "100", "-10");
+        assertFalse(success);
+        assertEquals(1, bookDao.listAll().size());
+    }
 
+    @Test
+    public void modifyingBookWithNonExcistingIdReturnsErrorMessage() {
+        String answer = service.modifyCurrentPage("2", "32");
+        assertEquals("Error! Book ID not found.", answer);
+    }
 
 }
