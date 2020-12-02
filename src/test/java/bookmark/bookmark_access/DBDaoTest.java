@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import org.junit.Rule;
-import org.junit.rules.TemporaryFolder;
+
 
 /**
  *
@@ -18,8 +18,6 @@ public class DBDaoTest {
     private Book book, book2;
     private BookDao dbDao;
     
-    @Rule
-    public TemporaryFolder tempFolder = new TemporaryFolder();
     
     @Before
     public void setUp() {

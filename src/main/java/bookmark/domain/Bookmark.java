@@ -26,7 +26,7 @@ public class Bookmark implements Comparable<Bookmark> {
 
     @Override
     public int compareTo(Bookmark o) {
-        return this.getTitle().compareTo(o.getTitle());
+        return this.getTitle().toLowerCase().compareTo(o.getTitle().toLowerCase());
     }
     
 }
