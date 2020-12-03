@@ -26,3 +26,4 @@
 ## User manual
 
 [Link to the manual](https://github.com/LindaJT/ryhma_kuusi/blob/main/MANUAL.md)
+
