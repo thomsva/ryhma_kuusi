@@ -29,7 +29,7 @@ public class App {
 
         while (true) {
 
-            System.out.println("");
+            System.out.println();
 
             String nextCommand = io.readLine("give a command or leave empty to quit:");
 

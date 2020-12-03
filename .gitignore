@@ -6,3 +6,4 @@ build
 
 # Ignore db files
 *.db
+/.nb-gradle/
